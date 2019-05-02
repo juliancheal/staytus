@@ -62,6 +62,13 @@ Rails.application.routes.draw do
   match 'setup/:action', :controller => 'setup', :as => 'setup', :via => [:get, :post]
 
   #
+  # Webhooks
+  #
+  constraints subdomain: "hooks" do
+    post '/:integration_name' => 'webhooks#receive', as: :receive_webhooks
+  end
+
+  #
   # Public Site Paths
   #
   get 'issue/:id' => 'pages#issue'

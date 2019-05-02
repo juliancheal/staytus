@@ -9,6 +9,8 @@
       %dl.fieldSet__field.u-margin
         %dt.fieldSet__label= f.label :initial_update, "Text for the first update"
         %dd.fieldSet__input= f.text_area :initial_update, :class => 'textInput', :placeholder => Issue::INITIAL_UPDATE_TEXT
+        %dt.fieldSet__label= f.label :initial_update_graph, "Grafana Graph URL"
+        %dd.fieldSet__input= f.text_field :initial_update, :class => 'textInput', :placeholder => "https://grafana.dev"
 
       %dl.fieldSet__field.u-margin
         %dt.fieldSet__label= f.label :state

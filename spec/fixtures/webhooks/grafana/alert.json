@@ -1,0 +1,16 @@
+{
+  "title": "My alert",
+  "ruleId": 1,
+  "ruleName": "Load peaking!",
+  "ruleUrl": "http://localhost:3000/d/2m6BWCzWk/status-dashboard?orgId=1&panelId=2&fullscreen&edit&tab=alert",
+  "state": "alerting",
+  "imageUrl": "http://localhost:3000/render/d-solo/2m6BWCzWk/status-dashboard?orgId=1&panelId=2&from=1556771531468&to=1556793131468&width=1000&height=500&tz=Europe%2FLondon",
+  "message": "Load is peaking. Make sure the traffic is real and spin up more webfronts",
+  "evalMatches": [
+    {
+      "metric": "requests",
+      "tags": {},
+      "value": 122
+    }
+  ]
+}

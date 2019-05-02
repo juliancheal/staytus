@@ -24,6 +24,9 @@
       <p class='issueUpdates__text'>
         <b class='issueUpdate__state issueUpdate__state--<%= update.state %>'><%= update.state.humanize %></b> &mdash;
         <%= update.text %>
+        <% unless update.image_url.blank? %>
+          <iframe src=<%= image_url(update.image_url) %> width="550" height="400"/>
+        <% end %>
       </p>
       <p class='issueUpdates__meta'>
         Posted <%= time_tag update.created_at%>
