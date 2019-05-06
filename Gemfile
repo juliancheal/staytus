@@ -27,6 +27,7 @@ gem 'redcarpet'
 gem 'premailer'
 gem 'rack-custom-proxies'
 gem 'log_logins'
+gem 'rest-client'
 
 group :development, :test do
   gem 'annotate', '~> 2.7.5'

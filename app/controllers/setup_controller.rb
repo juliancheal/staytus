@@ -31,7 +31,7 @@ class SetupController < ApplicationController
       @new_site.http_protocol = request.protocol.gsub('://', '')
       if @new_site.save
         ServiceStatus.create_defaults
-        Service.create_defaults
+        Service.seed
         self.current_user = User.first
         redirect_to admin_root_path, :notice => "You're all done! You can go ahead and explore! We've logged you in as the user you just created."
       else
