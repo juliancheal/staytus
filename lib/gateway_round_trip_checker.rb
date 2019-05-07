@@ -1,16 +1,16 @@
-class EntitlementsChecker
+class GatewayRoundTripChecker
   def self.run
     Thread.new { check_entitlements }
   end
 
   def self.degrade
-    api = Service.find_by(:name => "Entitlements")
+    api = Service.find_by(:name => "Gateway Round-Trip")
     api.status = ServiceStatus.find(4)
     api.save!
   end
 
   def self.operational
-    api = Service.find_by(:name => "Entitlements")
+    api = Service.find_by(:name => "Gateway Round-Trip")
     api.status = ServiceStatus.find(1)
     api.save!
   end
@@ -18,9 +18,9 @@ class EntitlementsChecker
   def self.check_entitlements
     loop do
       begin
-        Rails.logger.info "Checking Entitlements"
+        Rails.logger.info "Checking Gateway"
         code = lookup
-        api = Service.find_by(:name => "Entitlements")
+        api = Service.find_by(:name => "Gateway Round-Trip")
         Rails.logger.info "Received: #{code}"
         if code != 200
           apply_code(api, 4)
@@ -46,12 +46,12 @@ class EntitlementsChecker
 
   def self.lookup
     begin
-      url = "https://ci.cloud.paas.upshift.redhat.com/api/entitlements/v1/services"
+      url = "https://ci.cloud.paas.upshift.redhat.com/api/apicast-tests/ping"
       rest_return = RestClient::Request.execute(:method => :get,
                                                 :url    => url,
                                                 :user   => '',
                                                 :password => '',
-                                                :headers  => {:accept => :json},
+                                                :headers  => { 'x-rh-insights-gateway-use-auth-cache' => 0, 'x-rh-insights-gateway-use-entitlements-cache' => 0 },
                                                 :verify_ssl => false)
       Rails.logger.info "REST Return: #{rest_return.code}"
       rest_return.code
