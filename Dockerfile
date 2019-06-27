@@ -37,7 +37,6 @@ RUN chgrp -R 0 $WORKDIR && \
 EXPOSE 8787
 
 ENV RAILS_ENV production
-# Set a value even if we don't use it so active record doesn't blow up
-ENV DATABASE_URL postgresql://localhost:5432/postgres
 
-ENTRYPOINT ["bundle", "exec", "rails", "server"]
+ENTRYPOINT ["entrypoint"]
+CMD ["run_rails_server"]
