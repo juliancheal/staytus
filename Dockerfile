@@ -15,7 +15,7 @@ RUN yum -y install centos-release-scl-rh && \
                    && \
     yum clean all
 
-ENV WORKDIR /opt/staytus
+ENV WORKDIR /opt/staytus/
 ENV RAILS_ROOT $WORKDIR
 WORKDIR $WORKDIR
 
