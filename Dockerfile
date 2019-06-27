@@ -30,6 +30,8 @@ RUN source /opt/rh/rh-postgresql10/enable && \
     rm -rvf /root/.bundle/cache
 
 COPY . $WORKDIR
+COPY docker-assets/entrypoint /usr/bin
+COPY docker-assets/run_rails_server /usr/bin
 
 RUN chgrp -R 0 $WORKDIR && \
     chmod -R g=u $WORKDIR
